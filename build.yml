@@ -1,0 +1,28 @@
+
+name: Build Windows exe with pkg
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install pkg globally
+        run: npm install -g pkg
+      - name: Install dependencies
+        run: npm install --unsafe-perm
+      - name: Build exe (Windows x64)
+        run: pkg account_system.js --targets node18-win-x64 --output account_system-win.exe
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: account_system-win
+          path: account_system-win.exe
