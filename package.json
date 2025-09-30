@@ -1,0 +1,9 @@
+{
+  "name": "account_system",
+  "version": "1.0.0",
+  "bin": "account_system.js",
+  "scripts": {},
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  }
+}
